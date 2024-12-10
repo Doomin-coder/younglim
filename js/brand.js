@@ -177,24 +177,61 @@ $(function () {
 })
 
 
-// Gsap 효과
-        gsap.registerPlugin(ScrollTrigger);
-        let upBox = document.querySelector(".slide_Img_Inner ul");
+// // Gsap 효과
+//         gsap.registerPlugin(ScrollTrigger);
+//         let upBox = document.querySelector(".slide_Img_Inner ul");
         
+//         let tl = gsap.timeline({
+//             scrollTrigger: {
+//             trigger:".con5",
+//             pin:true,
+//             scrub:1,
+//             start:"top top",
+//             end:"+=200%", //시작부분에서 400%까지 스크롤한 후 종료
+//             markers:false,
+            
+//             },
+//         });
+
+//         tl.from(upBox, {y:"200%", duration:"2", ease:"none", stagger:"4", });
+//         tl.to(upBox, {y:"0",})
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+// 미디어 쿼리 설정
+let mediaQuery = window.matchMedia("(min-width: 768px)"); // PC 해상도 (1024px 이상)
+
+// 애니메이션 함수 정의
+function setupAnimation() {
+
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    if (mediaQuery.matches) {
+        let upBox = document.querySelector(".slide_Img_Inner ul");
+
+        // 기존 GSAP 애니메이션 설정
         let tl = gsap.timeline({
             scrollTrigger: {
-            trigger:".con5",
-            pin:true,
-            scrub:1,
-            start:"top top",
-            end:"+=200%", //시작부분에서 400%까지 스크롤한 후 종료
-            markers:false,
-            
+                trigger: ".con5",
+                pin: true,
+                scrub: 1,
+                start: "top top",
+                end: "+=200%",
+                markers: false,
             },
         });
 
-        tl.from(upBox, {y:"200%", duration:"2", ease:"none", stagger:"4", });
-        tl.to(upBox, {y:"0",})
+        tl.from(upBox, { y: "200%", duration: 2, ease: "none", stagger: 4 });
+        tl.to(upBox, { y: "0" });
+    }
+}
+
+// 초기 실행
+setupAnimation();
+
+// 미디어 쿼리 변화 감지
+mediaQuery.addEventListener("change", setupAnimation);
+
 
     
 
