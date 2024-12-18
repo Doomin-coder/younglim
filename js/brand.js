@@ -31,6 +31,17 @@ $(function () {
         $("body").removeClass("no-scroll");
     })
 
+    //헤더 바 후버효과
+    $(document).ready(function() {
+        $("nav ul li a").hover(
+          function() {
+            $(this).addClass("hovered");
+          },
+          function() {
+            $(this).removeClass("hovered");
+          }
+        );
+      });
 
 
 
@@ -148,23 +159,7 @@ $(function () {
         }
         //con5 끝
 
-
-
     })
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
 
 
     //con1 글씨 페이드
@@ -172,31 +167,15 @@ $(function () {
     function con1Show(){
        $(".con1_Wrap .video_Txt span").addClass("on")
        $(".con1_Wrap .video_Txt p").addClass("on") 
+       $(".con1_Wrap .video_Txt p").addClass("on") 
+
     }
 
 })
 
 
-// // Gsap 효과
-//         gsap.registerPlugin(ScrollTrigger);
-//         let upBox = document.querySelector(".slide_Img_Inner ul");
-        
-//         let tl = gsap.timeline({
-//             scrollTrigger: {
-//             trigger:".con5",
-//             pin:true,
-//             scrub:1,
-//             start:"top top",
-//             end:"+=200%", //시작부분에서 400%까지 스크롤한 후 종료
-//             markers:false,
-            
-//             },
-//         });
 
-//         tl.from(upBox, {y:"200%", duration:"2", ease:"none", stagger:"4", });
-//         tl.to(upBox, {y:"0",})
-
-
+// Gsap 효과
 gsap.registerPlugin(ScrollTrigger);
 
 // 미디어 쿼리 설정
